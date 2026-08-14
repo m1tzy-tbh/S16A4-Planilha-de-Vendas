@@ -1,36 +1,75 @@
+# linhas = vendedores
+# colunas = meses
+
 vendas = [
-    [1200, 1500, 1100],
-    [1000, 1300, 1400],
-    [900, 1700, 1600]
-    ]
+    [100, 200, 150],
+    [250, 300, 200],
+    [150, 100, 250]
+]
 
-num_vendedor = len(vendas)
-num_mes = len(vendas[0])
+# Etapa 1 - Exibição organizada
+print("VENDAS POR VENDEDOR")
+
+for i in range(len(vendas)):
+    print(f"Vendedor {i}: ", end="")
+    
+    for j in range(len(vendas[i])):
+        print(vendas[i][j], end=" ")
+    
+    print()
+
+print("\nQuantidade de linhas:", len(vendas))
+print("Quantidade de colunas:", len(vendas[0]))
 
 
-for vendedor in range(num_vendedor):
-    for mes in range(num_mes):
-            print(f"O {vendedor+1} vendedor vendeu no {mes+1} mÃªs R${vendas[vendedor][mes]}")
+# Etapa 2 - Total por vendedor
+print("\nTOTAL POR VENDEDOR")
 
-for vendedor in range(num_vendedor):
-    print(f"A soma das vendas do {vendedor+1} vendedor Ã© {sum(vendas[vendedor])}")
+for i in range(len(vendas)):
+    total = 0  # reinicia o acumulador para cada vendedor
 
-for mes in range(num_mes):
-    totalmes = 0
-    for vendedor in range(num_vendedor):
-        totalmes += vendas[vendedor][mes]
-    print(f"Total mÃªs {mes+1}: R$ {totalmes}")
+    for j in range(len(vendas[i])):
+        total += vendas[i][j]
 
-total = 0
-for i in vendas:
-    total = sum(i) + total
-print(f"O total das vendas da empresa Ã© {total}")
+    print(f"Total vendedor {i}: {total}")
 
-maiorvenda = 0
-melhor = 0
 
-for vendedor in range(num_vendedor):
-    if maiorvenda < sum(vendas[vendedor]):
-        maiorvenda = sum(vendas[vendedor])
-        melhor = 1 + vendedor
-print(f"O melhor vendedor e o {melhor} com o total de: R${maiorvenda}")
+# Etapa 3 - Total por mês
+print("\nTOTAL POR MÊS")
+
+for j in range(len(vendas[0])):
+    total = 0  # reinicia o acumulador para cada mês
+
+    for i in range(len(vendas)):
+        total += vendas[i][j]
+
+    print(f"Total mês {j}: {total}")
+
+
+# Etapa 4 - Total geral
+total_geral = 0
+
+for i in range(len(vendas)):
+    for j in range(len(vendas[i])):
+        total_geral += vendas[i][j]
+
+print("\nTOTAL GERAL")
+print("Total geral da empresa:", total_geral)
+
+
+# Etapa 5 - Melhor vendedor
+melhor_vendedor = 0
+maior_total = 0
+
+for i in range(len(vendas)):
+    total = 0
+
+    for j in range(len(vendas[i])):
+        total += vendas[i][j]
+
+    if total > maior_total:
+        maior_total = total
+        melhor_vendedor = i
+
+print("\nMELHOR VENDEDOR")
+print(f"Melhor vendedor: vendedor {melhor_vendedor}")
